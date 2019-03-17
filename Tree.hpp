@@ -1,13 +1,13 @@
 
 namespace ariel{
 struct Node{
-    double value;
+    int value;
     Node *left;
     Node *right;
     public:
     Node();
-    Node(double val);
-    Node(double val, Node  *left, Node *right);
+    Node(int val);
+    Node(int val, Node  *left, Node *right);
 };
 
 class Tree{
@@ -17,20 +17,20 @@ class Tree{
     public:
     
     Tree();
-   void addHelper(Node *root, double val);
-   void printHelper(Node *root);
-   int nodesCountHelper(Node *root);
+    void addHelper(Node *root, int val);
+    void printHelper(Node *root);
+    int nodesCountHelper(Node *root);
     int heightHelper(Node *root);
     void printMaxPathHelper(Node*root);
-    bool deleteValueHelper(Node *parent, Node *current, double value);
-    void insert(double i);
-    void remove(double i);
+    bool deleteValueHelper(Node *parent, Node *current, int value);
+    void insert(int i);
+    void remove(int i);
     int size();
-    bool contains(double i);
-    double root();
-    double parent(double i);
-    double left(double i);
-    double right(double i);
+    bool contains(int i);
+    int root();
+    int parent(int i);
+    int left(int i);
+    int right(int i);
     void print();
 
     };

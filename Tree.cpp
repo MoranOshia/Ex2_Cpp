@@ -13,18 +13,18 @@ using namespace ariel;
   Node::Node(){
       this->value=0;
   }
-   Node::Node(double val) {
+   Node::Node(int val) {
         this->value = val;
     }
 
-    Node::Node(double val, Node *left, Node *right) {
+    Node::Node(int val, Node *left, Node *right) {
         this->value = val;
         this->left = left;
         this->right = right;
     }
 
 
-void Tree::addHelper(Node *root, double val) {
+void Tree::addHelper(Node *root, int val) {
         if (root->value > val) {
             if (!root->left) {
                 root->left = new Node(val);
@@ -69,7 +69,7 @@ ariel::Tree e;
         }
     }
 
-    bool Tree::deleteValueHelper(Node *parent, Node *current, double value) {
+    bool Tree::deleteValueHelper(Node *parent, Node *current, int value) {
         if (!current) return false;
         if (current->value == value) {
             if (current->left == NULL || current->right == NULL) {
@@ -89,7 +89,7 @@ ariel::Tree e;
                 while (validSubs->left) {
                     validSubs = validSubs->left;
                 }
-                double temp = current->value;
+                int temp = current->value;
                 current->value = validSubs->value;
                 validSubs->value = temp;
                 return deleteValueHelper(current, current->right, temp);
@@ -104,7 +104,7 @@ ariel::Tree e;
     Tree::Tree(){
         roo = new Node();
     }
-    void Tree::insert(double i){
+    void Tree::insert(int i){
         
           if (roo) {
             this->addHelper(roo, i);
@@ -113,7 +113,7 @@ ariel::Tree e;
         }
     }
 
-    void Tree::remove(double i){
+    void Tree::remove(int i){
         bool flag= this->deleteValueHelper(NULL, this->roo, i);
     }
 
@@ -121,28 +121,28 @@ ariel::Tree e;
        return nodesCountHelper(roo);
     }
 
-    bool Tree::contains(double i){
+    bool Tree::contains(int i){
         bool con = false;
         return con;
     }
 
-    double Tree::root(){
+    int Tree::root(){
          return this->roo->value;
     }
 
-    double Tree::parent(double i){
-        double par = 0;
+    int Tree::parent(int i){
+        int par = 0;
         return par;
     }
 
-    double Tree::left(double i){
-        double lef = 0;
+    int Tree::left(int i){
+        int lef = 0;
         return lef;
     }
 
-    double Tree::right(double i){
+    int Tree::right(int i){
         
-        double ri = 0;
+        int ri = 0;
         return ri;
     }
 
