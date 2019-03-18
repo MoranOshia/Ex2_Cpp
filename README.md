@@ -1,8 +1,8 @@
 # Ex2_Cpp
 
-##Binnary Tree:
+Binnary Tree:
 
-##Sources:
+Sources:
  BST:
    https://gist.github.com/mgechev/5911348
  
