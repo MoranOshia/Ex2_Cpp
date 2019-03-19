@@ -25,6 +25,7 @@ using namespace ariel;
 
 
 void Tree::addHelper(Node *root, int val) {
+	
         if (root->value > val) {
             if (!root->left) {
                 root->left = new Node(val);
@@ -100,9 +101,30 @@ ariel::Tree e;
         return deleteValueHelper(current, current->left, value) || deleteValueHelper(current, current->right, value);
     }
 
-    
+    bool containsNode(Node* top, int data) {
+		if (top == NULL) return false;
+		if (data == top->value) return true;
+		if (data < top->value)  return containsNode(top->left, data);    
+		return containsNode(top->right, data);
+	}
+
+	Node* getParent(Node *root, int key){
+    if (root == NULL) return NULL;
+    else if (root->right->value == key || root->left->value == key) return root;
+	else if (root->value > key) getParent(root->left, key);
+	else getParent(root->right, key);
+	
+	}
+	
+	Node* getNodeByIndex(Node* top, int data) {
+		if (top == NULL) return NULL;
+		if (data == top->value) return top;
+		if (data < top->value)  return getNodeByIndex(top->left, data);    
+		return getNodeByIndex(top->right, data);
+	}
+	
     Tree::Tree(){
-        roo = new Node();
+        roo = NULL;
     }
     void Tree::insert(int i){
         
@@ -122,8 +144,10 @@ ariel::Tree e;
     }
 
     bool Tree::contains(int i){
-        bool con = false;
+        bool con = containsNode(roo, i);
         return con;
+		
+		
     }
 
     int Tree::root(){
@@ -131,19 +155,20 @@ ariel::Tree e;
     }
 
     int Tree::parent(int i){
-        int par = 0;
-        return par;
+		Node* parent=getParent(this->roo, i);
+      
+        return parent->value;
     }
 
     int Tree::left(int i){
-        int lef = 0;
-        return lef;
+        Node* n=getNodeByIndex(this->roo, i);
+		return n->left->value;
     }
 
     int Tree::right(int i){
-        
-        int ri = 0;
-        return ri;
+		
+        Node* n=getNodeByIndex(this->roo, i);
+		return n->right->value;
     }
 
     void Tree::print(){
