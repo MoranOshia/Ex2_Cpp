@@ -25,7 +25,8 @@ using namespace ariel;
 
 
 void Tree::addHelper(Node *root, int val) {
-	
+	       if(contains(val) == true)
+         throw std::invalid_argument( "Value already exists" );
         if (root->value > val) {
             if (!root->left) {
                 root->left = new Node(val);
@@ -49,7 +50,7 @@ void Tree::addHelper(Node *root, int val) {
         cout<<root->value<<' ';
         printHelper(root->right);
     }
-ariel::Tree e;
+
     int Tree::nodesCountHelper(Node *root) {
         if (!root) return 0;
         else return 1 + nodesCountHelper(root->left) + nodesCountHelper(root->right);
@@ -71,6 +72,8 @@ ariel::Tree e;
     }
 
     bool Tree::deleteValueHelper(Node *parent, Node *current, int value) {
+       if(contains(value) == false)
+         throw std::invalid_argument( "value not exist" );
         if (!current) return false;
         if (current->value == value) {
             if (current->left == NULL || current->right == NULL) {
@@ -111,8 +114,8 @@ ariel::Tree e;
 	Node* getParent(Node *root, int key){
     if (root == NULL) return NULL;
     else if (root->right->value == key || root->left->value == key) return root;
-	else if (root->value > key) getParent(root->left, key);
-	else getParent(root->right, key);
+	else if (root->value > key) return getParent(root->left, key);
+	else return getParent(root->right, key);
 	
 	}
 	
@@ -174,18 +177,5 @@ ariel::Tree e;
     void Tree::print(){
        printHelper(this->roo);
     }
-// int main() {
-
-// ariel::Tree e;
-// e.size();
-// // e->insert(5);
-// // int s = e.size();
-// // cout<<s<<endl;
-// }
-
-
-
-
-
 
 
