@@ -1,4 +1,5 @@
 
+
 namespace ariel{
 struct Node{
     int value;
