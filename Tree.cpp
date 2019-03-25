@@ -24,9 +24,8 @@ using namespace ariel;
     }
 
 
-void Tree::addHelper(Node *root, int val) {
-	       if(contains(val) == true)
-         throw std::invalid_argument( "Value already exists" );
+    void Tree::addHelper(Node *root, int val) {
+	
         if (root->value > val) {
             if (!root->left) {
                 root->left = new Node(val);
@@ -50,7 +49,7 @@ void Tree::addHelper(Node *root, int val) {
         cout<<root->value<<' ';
         printHelper(root->right);
     }
-
+ariel::Tree e;
     int Tree::nodesCountHelper(Node *root) {
         if (!root) return 0;
         else return 1 + nodesCountHelper(root->left) + nodesCountHelper(root->right);
@@ -72,8 +71,6 @@ void Tree::addHelper(Node *root, int val) {
     }
 
     bool Tree::deleteValueHelper(Node *parent, Node *current, int value) {
-       if(contains(value) == false)
-         throw std::invalid_argument( "value not exist" );
         if (!current) return false;
         if (current->value == value) {
             if (current->left == NULL || current->right == NULL) {
@@ -112,14 +109,16 @@ void Tree::addHelper(Node *root, int val) {
 	}
 
 	Node* getParent(Node *root, int key){
+		
     if (root == NULL) return NULL;
     else if (root->right->value == key || root->left->value == key) return root;
-	else if (root->value > key) getParent(root->left, key);
-	else getParent(root->right, key);
+	else if (root->value > key) return getParent(root->left, key);
+	else return getParent(root->right, key);
 	
 	}
 	
 	Node* getNodeByIndex(Node* top, int data) {
+		
 		if (top == NULL) return NULL;
 		if (data == top->value) return top;
 		if (data < top->value)  return getNodeByIndex(top->left, data);    
@@ -130,16 +129,27 @@ void Tree::addHelper(Node *root, int val) {
         roo = NULL;
     }
     void Tree::insert(int i){
-        
+        if(contains(i) == true)
+		{
+			 throw std::invalid_argument( "Value already exists" );
+		}
+		else{
           if (roo) {
             this->addHelper(roo, i);
         } else {
             roo = new Node(i);
-        }
+			   }
+		}
     }
 
     void Tree::remove(int i){
+		if(contains(i) == false)
+		{
+         throw std::invalid_argument( "value not exist" );
+		}
+		else{
         bool flag= this->deleteValueHelper(NULL, this->roo, i);
+		}
     }
 
     int Tree::size(){
@@ -158,23 +168,45 @@ void Tree::addHelper(Node *root, int val) {
     }
 
     int Tree::parent(int i){
+		if(contains(i)==true){
 		Node* parent=getParent(this->roo, i);
       
         return parent->value;
+		}
+		else
+		{
+			throw std::invalid_argument( "Not have key in the tree" );
+			return -100000000;
+		}
     }
 
     int Tree::left(int i){
+		if(contains(i)==true){
         Node* n=getNodeByIndex(this->roo, i);
 		return n->left->value;
+		}
+		
+		else
+		{
+			throw std::invalid_argument( "Not have key in the tree" );
+			return -100000000;
+		}
     }
 
     int Tree::right(int i){
-		
+		if(contains(i)==true){
+
         Node* n=getNodeByIndex(this->roo, i);
 		return n->right->value;
+		}
+		else
+		{
+			throw std::invalid_argument( "Not have key in the tree" );
+			return -100000000;
+		}
     }
 
     void Tree::print(){
        printHelper(this->roo);
     }
- 
+
