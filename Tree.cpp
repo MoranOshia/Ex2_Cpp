@@ -15,6 +15,8 @@ using namespace ariel;
   }
    Node::Node(int val) {
         this->value = val;
+		this->left = NULL;
+        this->right = NULL;
     }
 
     Node::Node(int val, Node *left, Node *right) {
@@ -182,14 +184,19 @@ ariel::Tree e;
 
     int Tree::left(int i){
 		if(contains(i)==true){
-        Node* n=getNodeByIndex(this->roo, i);
-		return n->left->value;
+			
+        Node* leftN=getNodeByIndex(this->roo, i);
+		if(leftN!=NULL && leftN->left!=NULL){
+			return leftN->left->value;
 		}
-		
+		else
+		{
+			throw std::invalid_argument( "The right Node is NULL" );
+		}
+		}
 		else
 		{
 			throw std::invalid_argument( "Not have key in the tree" );
-			return -100000000;
 		}
     }
 
@@ -197,16 +204,23 @@ ariel::Tree e;
 		if(contains(i)==true){
 
         Node* n=getNodeByIndex(this->roo, i);
-		return n->right->value;
+		
+		if(n!=NULL && n->right!=NULL ){
+			return n->right->value;
+		}
+		else
+		{
+			throw std::invalid_argument( "The right Node is NULL" );
+		}
 		}
 		else
 		{
 			throw std::invalid_argument( "Not have key in the tree" );
-			return -100000000;
 		}
     }
 
     void Tree::print(){
        printHelper(this->roo);
     }
+ 
 
