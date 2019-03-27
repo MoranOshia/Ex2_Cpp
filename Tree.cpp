@@ -112,11 +112,23 @@ ariel::Tree e;
 
 	Node* getParent(Node *root, int key){
 		
-    if (root == NULL) return NULL;
-    else if (root->right->value == key || root->left->value == key) return root;
-	else if (root->value > key) return getParent(root->left, key);
-	else return getParent(root->right, key);
-	
+	if (root == NULL){
+		return NULL;
+	}
+	else if ( (root->left!=NULL && root->left->value == key) || ((root->right!=NULL) && (root->right->value == key)))
+	{
+			return root;
+		}
+		else {
+			Node* parentN= getParent(root->left, key);
+			if (parentN!=NULL){
+				return parentN;
+			}
+			else{
+				return getParent(root->right, key);
+			}
+		}
+
 	}
 	
 	Node* getNodeByIndex(Node* top, int data) {
@@ -166,19 +178,31 @@ ariel::Tree e;
     }
 
     int Tree::root(){
+		if(this->roo!=NULL){
          return this->roo->value;
+		}
+		else
+		{
+			throw std::invalid_argument( "WORNG root is NULL" );
+		}
     }
 
     int Tree::parent(int i){
 		if(contains(i)==true){
 		Node* parent=getParent(this->roo, i);
-      
-        return parent->value;
+     
+		if(parent!=NULL){
+			return parent->value;
+		}
+		else
+		{
+			throw std::invalid_argument( "WORNG dont have parents" );
+		}
 		}
 		else
 		{
 			throw std::invalid_argument( "Not have key in the tree" );
-			return -100000000;
+			
 		}
     }
 
@@ -223,4 +247,4 @@ ariel::Tree e;
        printHelper(this->roo);
     }
  
-
+ 
