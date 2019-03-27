@@ -147,7 +147,7 @@
 		if (root == NULL){//check if NULL
 			return NULL;
 		}
-		else if ( (root->left!=NULL && root->left->value == key) || (root->right!=NULL && root->right->value == key) //checking root
+		else if ((root->left!=NULL && root->left->value == key)|| (root->right!=NULL && root->right->value == key))//checking root
 		{
 			return root;
 		}
@@ -173,21 +173,23 @@
 
 
 	void Tree::insert(int i){
-		if(contains(i) == true)
+		//isnsert function bt index using addHelper
+		if(contains(i) == true)//check if exsist
 		{
 			throw std::invalid_argument( "Value already exists" );
 		}
 		else{
 			if (roo) {
 				this->addHelper(roo, i);
-			} else {
+			} else {//if null
 				roo = new Node(i);
 			}
 		}
 	}
 
 	void Tree::remove(int i){
-		if(contains(i) == false)
+		//isnsert function bt index using deleteValueHelper
+		if(contains(i) == false)//check if exsist
 		{
 			throw std::invalid_argument( "value not exist" );
 		}
@@ -197,10 +199,12 @@
 	}
 
 	int Tree::size(){
+		//returnig size of the tree use nodesCountHelper
 		return nodesCountHelper(roo);
 	}
 
 	bool Tree::contains(int i){
+		//Check if index exsist in tree use containsNode
 		bool con = containsNode(roo, i);
 		return con;
 
@@ -208,7 +212,8 @@
 	}
 
 	int Tree::root(){
-		if(this->roo!=NULL){
+		//returning index of root
+		if(this->roo!=NULL){//if root not NULL
 			return this->roo->value;
 		}
 		else
@@ -218,18 +223,19 @@
 	}
 
 	int Tree::parent(int i){
-		if(contains(i)==true){
+		//returning index of root
+		if(contains(i)==true){//if index exsist
 			Node* parent=getParent(this->roo, i);
 
-			if(parent!=NULL){
+			if(parent!=NULL){//parent not NULL
 				return parent->value;
 			}
-			else
+			else //parent NULL
 			{
 				throw std::invalid_argument( "WORNG dont have parents" );
 			}
 		}
-		else
+		else //index not exsist
 		{
 			throw std::invalid_argument( "Not have key in the tree" );
 
@@ -237,43 +243,46 @@
 	}
 
 	int Tree::left(int i){
-		if(contains(i)==true){
+		//returning index of the left Node of the Index we got
+		if(contains(i)==true){//if index exsist
 
 			Node* leftN=getNodeByIndex(this->roo, i);
-			if(leftN!=NULL && leftN->left!=NULL){
+			if(leftN!=NULL && leftN->left!=NULL){//left node we got not NULL
 				return leftN->left->value;
 			}
 			else
-			{
+			{//left NULL
 				throw std::invalid_argument( "The right Node is NULL" );
 			}
 		}
 		else
-		{
+		{//index not exsist
 			throw std::invalid_argument( "Not have key in the tree" );
 		}
 	}
 
 	int Tree::right(int i){
+		//returning index of the right Node of the Index we got
 		if(contains(i)==true){
 
 			Node* n=getNodeByIndex(this->roo, i);
 
-			if(n!=NULL && n->right!=NULL ){
+			if(n!=NULL && n->right!=NULL ){//right node we got not NU:: 
 				return n->right->value;
 			}
 			else
-			{
+			{//right NULL
 				throw std::invalid_argument( "The right Node is NULL" );
 			}
 		}
 		else
-		{
+		{//index not exsist
 			throw std::invalid_argument( "Not have key in the tree" );
 		}
 	}
 
 	void Tree::print(){
+		//printing function use printHelper
 		printHelper(this->roo);
 	}
 
