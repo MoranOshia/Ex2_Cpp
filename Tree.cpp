@@ -174,7 +174,7 @@
 
 	void Tree::insert(int i){
 		//isnsert function bt index using addHelper
-		if(contains(i) == true)//check if exsist
+		if(contains(i) == true)//check if exist
 		{
 			throw std::invalid_argument( "Value already exists" );
 		}
@@ -189,7 +189,7 @@
 
 	void Tree::remove(int i){
 		//isnsert function bt index using deleteValueHelper
-		if(contains(i) == false)//check if exsist
+		if(contains(i) == false)//check if exist
 		{
 			throw std::invalid_argument( "value not exist" );
 		}
@@ -204,7 +204,7 @@
 	}
 
 	bool Tree::contains(int i){
-		//Check if index exsist in tree use containsNode
+		//Check if index exist in tree use containsNode
 		bool con = containsNode(roo, i);
 		return con;
 
@@ -224,7 +224,7 @@
 
 	int Tree::parent(int i){
 		//returning index of root
-		if(contains(i)==true){//if index exsist
+		if(contains(i)==true){//if index exist
 			Node* parent=getParent(this->roo, i);
 
 			if(parent!=NULL){//parent not NULL
@@ -235,7 +235,7 @@
 				throw std::invalid_argument( "WORNG dont have parents" );
 			}
 		}
-		else //index not exsist
+		else //index not exist
 		{
 			throw std::invalid_argument( "Not have key in the tree" );
 
@@ -244,7 +244,7 @@
 
 	int Tree::left(int i){
 		//returning index of the left Node of the Index we got
-		if(contains(i)==true){//if index exsist
+		if(contains(i)==true){//if index exist
 
 			Node* leftN=getNodeByIndex(this->roo, i);
 			if(leftN!=NULL && leftN->left!=NULL){//left node we got not NULL
@@ -256,7 +256,7 @@
 			}
 		}
 		else
-		{//index not exsist
+		{//index not exist
 			throw std::invalid_argument( "Not have key in the tree" );
 		}
 	}
@@ -276,7 +276,7 @@
 			}
 		}
 		else
-		{//index not exsist
+		{//index not exist
 			throw std::invalid_argument( "Not have key in the tree" );
 		}
 	}
